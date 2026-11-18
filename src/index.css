@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sky: var(--sky-bg);
+  --color-sky-ink: var(--sky-ink);
+  --color-sky-muted: var(--sky-muted);
+  --color-sky-accent: var(--sky-accent);
+}
+@theme {
+  --font-friendly: 'Nunito', sans-serif;
+  --font-clean: 'DM Sans', sans-serif;
+  --font-headline: 'Fraunces', serif;
+  --color-accent: #c2410c;
+  --font-phone: 'Scheherazade New', serif;
+--font-sans-new: 'Figtree', sans-serif;
+}
+
+[data-sky='morning'] {
+  --sky-bg: #ffd9b8;
+  --sky-ink: #2b1d2e;
+  --sky-muted: #4f3844;
+  --sky-scrim: rgb(255 244 234 / 0.5);
+  --sky-chip: rgb(255 255 255 / 0.25);
+ --sky-footer: rgb(58 36 52 / 0.78);
+ --sky-accent: #c2410c;
+}
+
+[data-sky='day'] {
+  --sky-bg: #9ed2f5;
+  --sky-ink: #0b2a3f;
+  --sky-muted: #25465c;
+  --sky-scrim: rgb(255 255 255 / 0.4);
+  --sky-chip: rgb(255 255 255 / 0.25);
+   --sky-footer: rgb(11 42 63 / 0.78);
+   --sky-accent: #c2410c;
+}
+
+[data-sky='dusk'] {
+  --sky-bg: #6a3a5a;
+  --sky-ink: #fff1e6;
+  --sky-muted: #f1d3c4;
+  --sky-scrim: rgb(34 14 36 / 0.5);
+   --sky-chip: rgb(34 14 36 / 0.4);
+   --sky-footer: rgb(34 14 36 / 0.8);
+   --sky-accent: #fb923c;
+}
+
+[data-sky='night'] {
+  --sky-bg: #141a33;
+  --sky-ink: #eef0fa;
+  --sky-muted: #b4bcdc;
+  --sky-scrim: rgb(8 12 30 / 0.55);
+   --sky-chip: rgb(8 12 30 / 0.5);
+   --sky-footer: rgb(8 12 30 / 0.85);
+   --sky-accent: #fb923c;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 500ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
+@keyframes snowfall {
+  from { transform: translate3d(0, -10vh, 0); }
+  to { transform: translate3d(var(--drift), 110vh, 0); }
+}
+
+.snowflake {
+  position: absolute;
+  top: 0;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.85);
+  animation-name: snowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-spin {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
+.nav-glow {
+  position: relative;
+}
+
+.nav-glow::before,
+.nav-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--glow-angle),
+    transparent 0%,
+    transparent 55%,
+    var(--sky-ink) 72%,
+    var(--sky-accent) 88%,
+    transparent 100%
+  );
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: glow-spin 6s linear infinite;
+}
+
+.nav-glow::before {
+  padding: 2px;
+}
+
+.nav-glow::after {
+  padding: 6px;
+  filter: blur(5px);
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-glow::before,
+  .nav-glow::after {
+    animation: none;
+  }
+}
