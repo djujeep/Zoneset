@@ -122,7 +122,7 @@ export default function App() {
     </ul>
 
     <p className="rise mt-6 text-sm text-sky-muted" style={{ animationDelay: '400ms' }}>
-      Made for designers, developers, writers and virtual assistants.
+      Made for all kinds of freelancers.
     </p>
   </div>
 </section>
