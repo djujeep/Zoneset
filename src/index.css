@@ -18,41 +18,41 @@
 [data-sky='morning'] {
   --sky-bg: #ffd9b8;
   --sky-ink: #2b1d2e;
-  --sky-muted: #4f3844;
-  --sky-scrim: rgb(255 244 234 / 0.5);
   --sky-chip: rgb(255 255 255 / 0.25);
  --sky-footer: rgb(58 36 52 / 0.78);
- --sky-accent: #c2410c;
+ --sky-accent: #9a3412;
+--sky-scrim: rgb(255 244 234 / 0);
+--sky-muted: #2f1f28;
 }
 
 [data-sky='day'] {
   --sky-bg: #9ed2f5;
   --sky-ink: #0b2a3f;
-  --sky-muted: #25465c;
-  --sky-scrim: rgb(255 255 255 / 0.4);
   --sky-chip: rgb(255 255 255 / 0.25);
    --sky-footer: rgb(11 42 63 / 0.78);
-   --sky-accent: #c2410c;
+   --sky-accent: #9a3412;
+   --sky-scrim: rgb(255 255 255 / 0);
+   --sky-muted: #12293a;
 }
 
 [data-sky='dusk'] {
   --sky-bg: #6a3a5a;
   --sky-ink: #fff1e6;
   --sky-muted: #f1d3c4;
-  --sky-scrim: rgb(34 14 36 / 0.5);
    --sky-chip: rgb(34 14 36 / 0.4);
    --sky-footer: rgb(34 14 36 / 0.8);
-   --sky-accent: #fb923c;
+   --sky-accent: hsl(31, 97%, 72%);
+   --sky-scrim: rgb(34 14 36 / 0.7);
 }
 
 [data-sky='night'] {
-  --sky-bg: #141a33;
-  --sky-ink: #eef0fa;
-  --sky-muted: #b4bcdc;
-  --sky-scrim: rgb(8 12 30 / 0.55);
+   --sky-bg: #141a33;
+   --sky-ink: #eef0fa;
+   --sky-muted: #d5dbf0;
    --sky-chip: rgb(8 12 30 / 0.5);
    --sky-footer: rgb(8 12 30 / 0.85);
-   --sky-accent: #fb923c;
+   --sky-accent: #fdba74;
+   --sky-scrim: rgb(8 12 30 / 0.7);
 }
 @keyframes rise {
   from {
@@ -143,3 +143,24 @@
     animation: none;
   }
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+[data-sky] { font-weight: 500; }
+[data-sky] h1,
+[data-sky] h2 { font-weight: 700; }
